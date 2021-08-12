@@ -1,5 +1,5 @@
 /*
- *  UC1 : Given Distance and Time ,the invoice generator should return total fare of the journey
+ * UC2 : The InVoice Generator Should Now Take Multiple Rides,and Calculate Total Aggregate for all.
  */
 
 public class CabInvoiceGenerator {
@@ -16,5 +16,15 @@ public class CabInvoiceGenerator {
         if(totalFare < MINIMUM_FARE)
             return MINIMUM_FARE;
         return totalFare;
+    }
+
+    //To calculate fare for multiple rides
+    public double calculateFare(Ride[] rides) {
+        double totalAggregateFare = 0;
+        for (Ride ride :rides) {
+            totalAggregateFare += this.calculateFare(ride.distance,ride.time);
+        }
+        System.out.println(totalAggregateFare);
+        return totalAggregateFare;
     }
 }
